@@ -1,0 +1,39 @@
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+
+  fieldset {
+    flex-grow: 1;
+  }
+
+  h2 {
+    width: 100%;
+  }
+
+  #tags {
+    width: 70%;
+  }
+}
+
+#projects-list {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+
+  &:not(:has(:nth-child(1)))::after {
+    @starting-style {
+      opacity: 0;
+    }
+
+    content: "Nenhum projeto possui todas as tags selecionadas.";
+    transition: opacity 250ms ease;
+  }
+}
+
+#tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1ch;
+}

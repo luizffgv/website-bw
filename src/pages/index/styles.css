@@ -1,0 +1,89 @@
+.icon-emoji {
+  font-size: inherit;
+}
+
+#mbti-meters {
+  text-align-last: justify;
+
+  max-width: 25ch; /* So the percentage numbers are not too far from the labels */
+}
+
+#section-links,
+#section-random {
+  display: flex;
+  flex-wrap: wrap;
+
+  > h2 {
+    width: 100%;
+  }
+
+  > :is(a, button) {
+    flex: 1 0 0;
+  }
+}
+
+#section-programming {
+  column-gap: 2em;
+  display: flex;
+  flex-wrap: wrap;
+
+  h2 {
+    width: 100%;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+@keyframes mbti-meter {
+  0% {
+    scale: 0 1;
+  }
+
+  50%,
+  90% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 0 1;
+  }
+}
+
+#mbti-meters {
+  > * {
+    position: relative;
+    padding: 0 0.5ch;
+
+    &::after {
+      background: var(--color-fg);
+      content: " ";
+      height: 100%;
+      left: -5px;
+      mix-blend-mode: difference;
+      position: absolute;
+
+      animation: mbti-meter ease both;
+      animation-range: contain;
+      animation-timeline: view(block);
+      transform-origin: left;
+    }
+  }
+
+  #mbti-meter-energy::after {
+    width: 61%;
+  }
+
+  #mbti-meter-mind::after {
+    width: 60%;
+  }
+
+  #mbti-meter-nature::after {
+    width: 67%;
+  }
+
+  #mbti-meter-tactics::after {
+    width: 86%;
+  }
+}

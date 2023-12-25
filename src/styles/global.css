@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap");
+
+@layer global {
+  :root {
+    --color-bg: rgb(10 10 10);
+    --color-fg: rgb(240 240 240);
+    --color-weak: rgb(125 125 125);
+
+    --font-regular: "Atkinson Hyperlegible", sans-serif;
+  }
+
+  * {
+    cursor: none;
+    margin: 0;
+  }
+
+  ::selection {
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  a:not(.button) {
+    color: inherit;
+    font-weight: 700;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    display: flex; /* So <main> can grow to fill the space left by the navbar */
+    flex-direction: column;
+    font-family: var(--font-regular);
+    height: 100dvh;
+    line-height: 1.4;
+  }
+
+  a.button,
+  button {
+    /* Prevent the button being overlapped by the previous buttons' shadows */
+    background: var(--color-bg);
+
+    border: 1px solid var(--color-fg);
+    box-shadow: 5px 5px 0px var(--color-fg);
+    color: inherit;
+    display: block;
+    font-size: inherit;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 250ms;
+    transition-property: background-color, border-color, box-shadow;
+    transition-timing-function: ease;
+
+    &:is(:hover, :focus-visible) {
+      border-color: transparent;
+      box-shadow: 4px 4px var(--color-bg), 4px 4px 0 1px var(--color-fg);
+      outline: none;
+    }
+  }
+
+  fieldset {
+    border: 1px solid var(--color-fg);
+  }
+
+  h1 {
+    margin: 0.75em 0;
+  }
+
+  h2 {
+    margin: 0.5em 0;
+  }
+
+  label {
+    &:has(input[type="checkbox"]) {
+      border-bottom: 1px solid var(--color-fg);
+      padding: 0 1ch;
+      position: relative;
+      transition: border-color 250ms ease;
+      user-select: none;
+
+      &:has(:checked),
+      &:has(:focus-visible) {
+        border-color: transparent;
+      }
+
+      &::after {
+        background-color: white;
+        content: "";
+        mix-blend-mode: difference;
+        bottom: 0;
+        height: 0;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        transition: height 250ms ease;
+      }
+
+      &:has(:checked)::after {
+        height: 100%;
+      }
+
+      input {
+        appearance: none;
+        inset: 0;
+        outline: none;
+        position: absolute;
+      }
+    }
+
+    &:has(input[type="radio"]) {
+      align-items: center;
+      display: flex;
+      gap: 0.5ch;
+
+      input {
+        --radius: 8px;
+
+        appearance: none;
+        border-radius: calc(infinity * 1px);
+        border: 2px solid var(--color-fg);
+        box-sizing: border-box;
+        height: calc(var(--radius) * 2);
+        transition: border-width 250ms ease;
+        width: calc(var(--radius) * 2);
+
+        &:checked {
+          border-width: var(--radius);
+        }
+      }
+    }
+  }
+
+  main {
+    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    justify-content: space-between;
+    margin: 0 auto;
+    overflow-y: auto;
+
+    /* Interpolates horizontal padding based on the following steps:
+   * 0px at 280px viewport width
+   * 180px at 1620px viewport width
+   * +1px for every +2px viewport width at >1620px viewport width
+   *
+   * Made with https://github.com/luizffgv/viewport-based-rescaling
+   */
+    --padding-horizontal: max(0px, -37.61px + 13.43vw);
+    @media screen and (min-width: 1620px) {
+      --padding-horizontal: calc(-630px + 50vw);
+    }
+    padding-left: var(--padding-horizontal);
+    padding-right: var(--padding-horizontal);
+
+    padding-top: 32px;
+    padding-bottom: 50dvh;
+
+    > section.card {
+      flex-grow: 1;
+    }
+
+    &::-webkit-scrollbar {
+      background: var(--color-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-fg);
+    }
+  }
+
+  p {
+    margin: 1em 0;
+    max-width: 50ch;
+  }
+
+  ul {
+    padding: 0;
+
+    &.no-list-style {
+      list-style: none;
+    }
+  }
+
+  .card {
+    border-left: 1px solid var(--color-fg);
+    padding: 16px 24px;
+  }
+
+  .danger {
+    color: var(--color-danger);
+  }
+
+  .material-symbols-outlined {
+    vertical-align: middle;
+  }
+
+  .weak {
+    color: var(--color-weak);
+  }
+
+  #navbar {
+    align-items: center;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid white;
+    box-shadow: 0 0 30px 30px var(--color-bg);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+    z-index: 1;
+
+    #navbar__pages {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-evenly;
+    }
+  }
+}
