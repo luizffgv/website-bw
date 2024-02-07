@@ -4,7 +4,6 @@
   :root {
     --color-bg: rgb(10 10 10);
     --color-fg: rgb(240 240 240);
-    --color-weak: rgb(125 125 125);
 
     --font-regular: "Atkinson Hyperlegible", sans-serif;
   }
@@ -197,10 +196,6 @@
 
   .material-symbols-outlined {
     vertical-align: middle;
-  }
-
-  .weak {
-    color: var(--color-weak);
   }
 
   #navbar {
