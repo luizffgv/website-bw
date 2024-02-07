@@ -22,6 +22,9 @@ const ARTICLES = [
   { url: "https://pt.wikipedia.org/wiki/Carta-bomba" },
   { url: "https://pt.wikipedia.org/wiki/Hilaridade_fatal" },
   { url: "https://pt.wikipedia.org/wiki/Labilidade_emocional" },
+  { url: "https://en.wikipedia.org/wiki/Haumea" },
+  { url: "https://en.wikipedia.org/wiki/Asteroid_impact_prediction" },
+  { url: "https://en.wikipedia.org/wiki/Gravity_tractor"}
 ] as const satisfies Article[];
 
 const elements = {
