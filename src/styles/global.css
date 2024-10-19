@@ -134,7 +134,7 @@
   }
 
   main {
-    align-items: start;
+    align-items: stretch;
     display: flex;
     flex-wrap: wrap;
     gap: 48px;
